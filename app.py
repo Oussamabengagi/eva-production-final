@@ -24,8 +24,7 @@ intents = json.loads(open('intents.json', 'r').read())
 words = pickle.load(open('words.pkl','rb'))
 classes = pickle.load(open('classes.pkl','rb'))
 model = load_model('chatbotmodel.h5')
-load_classifier = open("emotion_detector.pickle", "rb")
-classifier = pickle.load(load_classifier)
+
 
 
 # In[3]:
@@ -95,16 +94,9 @@ def get_features(word_list):
     return dict([(word, True) for word in word_list])
 
 
+
+
 # In[9]:
-
-
-def classify_emotion(classifier, text):
-    features = get_features(preprocess(text))
-    sentiment = classifier.classify(features)
-    return sentiment
-
-
-# In[10]:
 
 
 def save_history(message, res):
@@ -113,7 +105,7 @@ def save_history(message, res):
         f.write("AI Therapist: " + res + "\n")
 
 
-# In[11]:
+# In[10]:
 
 
 import time
@@ -124,7 +116,7 @@ def slow_type(message):
         time.sleep(0.1)
 
 
-# In[12]:
+# In[11]:
 
 
 import nltk
@@ -134,7 +126,7 @@ nltk.download('wordnet')
 nltk.download('omw-1.4')
 
 
-# In[ ]:
+# In[12]:
 
 
 app = Flask("__name__")
@@ -153,13 +145,6 @@ def evamindmate():
 if __name__ == '__main__':
     app.run()
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
